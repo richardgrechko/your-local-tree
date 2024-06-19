@@ -15,6 +15,9 @@ addLayer("r", {
     exponent: 1, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
+        if (hasUpgrade("m", 11)) mult = mult.mul(2)
+        if (hasUpgrade("m", 12)) mult = mult.mul(3)
+        if (hasUpgrade("m", 13)) mult = mult.mul(5)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -26,23 +29,30 @@ addLayer("r", {
     ],
     upgrades: {
       11: {
-        title: "bla",
-        description: "bla gain",
-        cost: new Decimal(2500)
+        title: "Quickener",
+        description: "x2 RP gain",
+        cost: new Decimal(100)
       },
       12: {
-        title: "bla",
-        description: "bla gain",
-        cost: new Decimal(25000)
+        title: "Fastener",
+        description: "x3 RP gain",
+        cost: new Decimal(500)
       },
       13: {
-        title: "bla",
-        description: "bla gain",
-        cost: new Decimal(2500000)
+        title: "Speeder",
+        description: "x5 RP gain",
+        cost: new Decimal(10000)
       },
-      
+      14: {
+        title: "Auto RP",
+        description: "Automate your RP",
+        cost: new Decimal(1e10)
+      },
     },
 	branches: ["p"],
+    passiveGeneration() {
+      return player.r.upgrades[14].bought
+    },
     softcap: new Decimal("ee10"),
     layerShown(){return true}
 })
@@ -72,5 +82,15 @@ addLayer("p", {
     hotkeys: [
         {key: "p", description: "P: Reset for prestige points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
+    milestones: {
+      0: {
+        requirementDescription: "100 prestige points",
+        effectDescription: "Automate Multiplier Upgrade",
+        done() {
+          return player.p.points.gte(100)
+        }
+      },
+      
+    },
     layerShown(){return true}
 })
