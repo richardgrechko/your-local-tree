@@ -4,7 +4,7 @@ addLayer("r", {
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
         unlocked: true,
-		points: new Decimal(0),
+		points: new Decimal(1),
     }},
     color: "#8000FF",
     requires: new Decimal(10), // Can be a function that takes requirement increases into account
@@ -15,7 +15,7 @@ addLayer("r", {
     exponent: 1, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
-        mult = mult.mul(player.p.points + 1)
+        mult = mult.mul(player.p.points)
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
