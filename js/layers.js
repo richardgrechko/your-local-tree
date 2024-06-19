@@ -43,15 +43,10 @@ addLayer("r", {
         description: "x5 RP gain",
         cost: new Decimal(10000)
       },
-      14: {
-        title: "Auto RP",
-        description: "Automate your RP",
-        cost: new Decimal(1e10)
-      },
     },
 	branches: ["p"],
     passiveGeneration() {
-      return player.r.upgrades[14]
+      return hasMilestone("p", 0)
     },
     softcap: new Decimal("ee10"),
     layerShown(){return true}
@@ -85,7 +80,7 @@ addLayer("p", {
     milestones: {
       0: {
         requirementDescription: "100 prestige points",
-        effectDescription: "Automate Multiplier Upgrade",
+        effectDescription: "Automate RP Upgrade and Get RP per second",
         done() {
           return player.p.points.gte(100)
         }
