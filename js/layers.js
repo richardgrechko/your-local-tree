@@ -12,7 +12,7 @@ addLayer("r", {
     baseResource: "seconds", // Name of resource prestige is based on
     baseAmount() {return player.points.mul(player.r.points.add(1))}, // Get the current amount of baseResource
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
-    exponent: 0.75, // Prestige currency exponent
+    exponent: 0.9, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
         if (hasUpgrade("r", 11)) mult = mult.mul(2)
@@ -50,7 +50,7 @@ addLayer("r", {
             currencyDisplayName: "Number",
             currencyInternalName: "Number",
             style() {
-                const style = {"width": "100px", "height": "100px"}
+                const style = {"width": "120px", "height": "120px"}
                 return style
               },
             cost(x) { 
@@ -68,7 +68,7 @@ addLayer("r", {
                 if (player.p.unlocked) {i=i.mul(p.mul(0.1).add(1))}
                 if (hasMilestone("r", 0)) {i=i.mul(2)}
                 i = Math.floor(i)
-                let data = tmp[this.layer].buyables[this.id]
+                let data = tmp.r.buyables[11]
                 return "Cost: " + format(data.cost) + " Number\n\
                 Level: " + player.r.buyables[this.id] + "\n\
                 Adds +"+ format(i) + " NPS"
