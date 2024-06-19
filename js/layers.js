@@ -98,7 +98,7 @@ addLayer("r", {
                 }
 		}
 	},
-	branches: ["p"],
+	branches: ["p", "a"],
     passiveGeneration() {
       return hasMilestone("p", 0)
     },
@@ -152,7 +152,7 @@ addLayer("a", {
         unlocked: true,
 		points: new Decimal(0),
     }},
-    color: "#0080FF",
+    color: "#00FF80",
     requires: new Decimal(1e10), // Can be a function that takes requirement increases into account
     resource: "ascension points", // Name of prestige currency
     baseResource: "PP", // Name of resource prestige is based on
