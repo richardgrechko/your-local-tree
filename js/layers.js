@@ -51,7 +51,7 @@ addLayer("r", {
     },
 	branches: ["p"],
     passiveGeneration() {
-      return player.r.upgrades[14].bought
+      return player.r.upgrades[14]
     },
     softcap: new Decimal("ee10"),
     layerShown(){return true}
