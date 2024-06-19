@@ -43,6 +43,7 @@ addLayer("r", {
       
     },
 	branches: ["p"],
+    softcap: new Decimal("ee10"),
     layerShown(){return true}
 })
 addLayer("p", {
