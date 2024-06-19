@@ -74,27 +74,27 @@ addLayer("r", {
                 Adds +"+ format(i) + " NPS"
             },
             canAfford() {
-                return player.points.gte(tmp[this.layer].buyables[this.id].cost)
+                return player.r.points.gte(tmp[this.layer].buyables[this.id].cost)
                 },
                 buy() {
                     if (hasMilestone("r", 1)) {while (player.points.gte(tmp[this.layer].buyables[this.id].cost))
                     {
                         this.cost()
-                        player.points = player.points.sub(cost)   
+                        player.r.points = player.r.points.sub(cost)   
                         player.r.buyables[11] = player.r.buyables[11].add(1)
                         i = new Decimal(3)
                         playerNPoints=playerNPoints.add(i)
                     }}
                     else {
                         this.cost()
-                        player.points = player.points.sub(cost)   
+                        player.r.points = player.r.points.sub(cost)   
                         player.r.buyables[11] = player.r.buyables[11].add(1)
                         i = new Decimal(3)
                         playerNPoints=playerNPoints.add(i)
                     }
                 },
                     effect (){
-                    return player.r.points
+                    return player.points.mul(player.r.points.add(1))
                 }
 		}
 	},
