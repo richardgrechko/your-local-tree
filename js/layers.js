@@ -50,11 +50,6 @@ addLayer("r", {
     },
     softcap: new Decimal("ee10"),
     layerShown(){return true}
-	prestigeButtonText() { //Is secretly HTML
-        return hasMilestone("r", 0) ? `Your points are multiplying!<br>
-        +${formatWhole(getResetGain(this.layer))}/s` : `Rebirth!<br>
-        +${formatWhole(getResetGain(this.layer))}`
-    },
 })
 addLayer("p", {
     name: "prestige", // This is optional, only used in a few places, If absent it just uses the layer id.
