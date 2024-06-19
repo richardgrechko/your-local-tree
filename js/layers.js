@@ -94,7 +94,7 @@ addLayer("r", {
                     }
                 },
                     effect (){
-                    return baseAmount()
+                    return player.points.mul(player.r.points.add(1))
                 }
 		},
 		12: {
@@ -146,7 +146,7 @@ addLayer("r", {
                     }
                 },
                     effect (){
-                    return baseAmount()
+                    return player.points.mul(player.r.points.add(1))
                 }
 		},
 		13: {
@@ -198,7 +198,7 @@ addLayer("r", {
                     }
                 },
                     effect (){
-                    return baseAmount()
+                    return player.points.mul(player.r.points.add(1))
                 }
 		},
 	},
