@@ -44,6 +44,11 @@ function getPointGen() {
 
 	let gain = new Decimal(1)
 	gain = gain.mul(player.r.points.add(1))
+	gain = gain.mul(buyableEffect('b', 11))
+	gain = gain.mul(buyableEffect('b', 12))
+	gain = gain.mul(buyableEffect('b', 13))
+	gain = gain.mul(buyableEffect('b', 14))
+	gain = gain.mul(buyableEffect('b', 15))
 	return gain
 }
 
