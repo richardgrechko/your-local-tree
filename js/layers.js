@@ -102,7 +102,7 @@ addLayer("r", {
             buy() {
                 if(!hasMilestone('p', 1)){player[this.layer].points = player[this.layer].points.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))} else {
-                setBuyableAmount(this.layer, this.id, player.r.points.min(10000).floor())}
+                setBuyableAmount(this.layer, this.id, player.r.points.min(100).floor())}
             },
             style: {
                 "height": "120px",
@@ -112,7 +112,7 @@ addLayer("r", {
                 "border-bottom-left-radius": "0%",
                 "border-bottom-right-radius": "0%",
             },
-            purchaseLimit: 10000,
+            purchaseLimit: 100,
             bonus() {
                 let bonus = new Decimal(0)
                 if(hasUpgrade('a', 12)) bonus = bonus.add(upgradeEffect('a', 12))
