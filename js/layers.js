@@ -72,7 +72,7 @@ addLayer("r", {
 		11: {
             cost() {return D(10).mul(getBuyableAmount(this.layer, this.id).add(1))},
             display() {return "("+formatWhole(getBuyableAmount(this.layer, this.id).add(tmp['r'].buyables[11].bonus))+"/"+formatWhole(D(100).add(tmp['r'].buyables[11].bonus))+")<br><h3>Quickener</h3><br>+10% points<br>Cost: "+format(this.cost())+" bytes<br>Currently: "+format(buyableEffect(this.layer, this.id))+"x"},
-            effect() {return D(10).add(D(1).mul(getBuyableAmount(this.layer, this.id).add(tmp['r'].buyables[11].bonus))).mul(buyableEffect('r', 12))},
+            effect() {return D(1).add(D(0.1).mul(getBuyableAmount(this.layer, this.id).add(tmp['r'].buyables[11].bonus))).mul(buyableEffect('r', 12))},
             canAfford() {return player.b.points.gte(this.cost())},
             buy() {
                 if(!hasMilestone('unl', 1)){player[this.layer].points = player[this.layer].points.sub(this.cost())
@@ -98,7 +98,7 @@ addLayer("r", {
 		12: {
             cost() {return D(10).mul(getBuyableAmount(this.layer, this.id).add(1))},
             display() {return "("+formatWhole(getBuyableAmount(this.layer, this.id).add(tmp['r'].buyables[11].bonus))+"/"+formatWhole(D(100).add(tmp['r'].buyables[11].bonus))+")<br><h3>Fastener</h3><br>+10% points<br>Cost: "+format(this.cost())+" bytes<br>Currently: "+format(buyableEffect(this.layer, this.id))+"x"},
-            effect() {return D(10).add(D(1).mul(getBuyableAmount(this.layer, this.id).add(tmp['r'].buyables[11].bonus))).mul(buyableEffect('r', 12))},
+            effect() {return D(5).add(D(0.5).mul(getBuyableAmount(this.layer, this.id).add(tmp['r'].buyables[11].bonus))).mul(buyableEffect('r', 12))},
             canAfford() {return player.b.points.gte(this.cost())},
             buy() {
                 if(!hasMilestone('unl', 1)){player[this.layer].points = player[this.layer].points.sub(this.cost())
