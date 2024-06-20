@@ -1,6 +1,6 @@
-addLayer("r", {
-    name: "rebirth", // This is optional, only used in a few places, If absent it just uses the layer id.
-    symbol: "R", // This appears on the layer's node. Default is the id with the first letter capitalized
+addLayer("s", {
+    name: "second", // This is optional, only used in a few places, If absent it just uses the layer id.
+    symbol: "s", // This appears on the layer's node. Default is the id with the first letter capitalized
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
         unlocked: true,
@@ -8,7 +8,7 @@ addLayer("r", {
     }},
     color: "#8000FF",
     requires: new Decimal(10), // Can be a function that takes requirement increases into account
-    resource: "rebirth points", // Name of prestige currency
+    resource: "seconds", // Name of prestige currency
     baseResource: "seconds", // Name of resource prestige is based on
     baseAmount() {return player.points}, // Get the current amount of baseResource
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
@@ -27,50 +27,6 @@ addLayer("r", {
     hotkeys: [
         {key: "p", description: "P: Reset for prestige points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
-    upgrades: {
-      11: {
-        title: "More RP",
-        description: "x2 RP gain",
-        style: {
-        	"height": "120px",
-        	"width": "120px",
-		"margin": 0,
-        	"border-top-left-radius": "0%",
-        	"border-top-right-radius": "0%",
-        	"border-bottom-left-radius": "25%",
-        	"border-bottom-right-radius": "0%",
-        },
-        cost: new Decimal(100)
-      },
-      12: {
-        title: "Even more RP",
-        description: "x3 RP gain",
-        style: {
-        	"height": "120px",
-        	"width": "120px",
-		"margin": 0,
-        	"border-top-left-radius": "0%",
-        	"border-top-right-radius": "0%",
-        	"border-bottom-left-radius": "0%",
-        	"border-bottom-right-radius": "0%",
-        },
-        cost: new Decimal(500)
-      },
-      13: {
-        title: "Way more RP",
-        description: "x5 RP gain",
-        style: {
-        	"height": "120px",
-        	"width": "120px",
-		"margin": 0,
-        	"border-top-left-radius": "0%",
-        	"border-top-right-radius": "0%",
-        	"border-bottom-left-radius": "0%",
-        	"border-bottom-right-radius": "25%",
-        },
-        cost: new Decimal(10000)
-      },
-    },
 	buyables: {
 		11: {
             cost() {return new Decimal(10).mul(getBuyableAmount(this.layer, this.id).add(1))},
@@ -203,6 +159,89 @@ addLayer("r", {
             },
 		},
 	},
+	branches: ["r"],
+    passiveGeneration() {
+      return hasMilestone("p", 0)
+    },
+	autoBuy() {
+		return hasMilestone("p", 1)
+	},
+    softcap: new Decimal("ee10"),
+    layerShown(){return true}
+})
+addLayer("r", {
+    name: "rebirth", // This is optional, only used in a few places, If absent it just uses the layer id.
+    symbol: "R", // This appears on the layer's node. Default is the id with the first letter capitalized
+    position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
+    startData() { return {
+        unlocked: true,
+		points: new Decimal(0),
+    }},
+    color: "#8000FF",
+    requires: new Decimal(10), // Can be a function that takes requirement increases into account
+    resource: "rebirth points", // Name of prestige currency
+    baseResource: "seconds", // Name of resource prestige is based on
+    baseAmount() {return player.points}, // Get the current amount of baseResource
+    type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
+    exponent: 0.9, // Prestige currency exponent
+    gainMult() { // Calculate the multiplier for main currency from bonuses
+        mult = new Decimal(1)
+        if (hasUpgrade("r", 11)) mult = mult.mul(2)
+        if (hasUpgrade("r", 12)) mult = mult.mul(3)
+        if (hasUpgrade("r", 13)) mult = mult.mul(5)
+        return mult
+    },
+    gainExp() { // Calculate the exponent on main currency from bonuses
+        return new Decimal(1)
+    },
+    row: 0, // Row the layer is in on the tree (0 is the first row)
+    hotkeys: [
+        {key: "p", description: "P: Reset for prestige points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
+    ],
+    upgrades: {
+      11: {
+        title: "More RP",
+        description: "x2 RP gain",
+        style: {
+        	"height": "120px",
+        	"width": "120px",
+		"margin": 0,
+        	"border-top-left-radius": "0%",
+        	"border-top-right-radius": "0%",
+        	"border-bottom-left-radius": "25%",
+        	"border-bottom-right-radius": "0%",
+        },
+        cost: new Decimal(100)
+      },
+      12: {
+        title: "Even more RP",
+        description: "x3 RP gain",
+        style: {
+        	"height": "120px",
+        	"width": "120px",
+		"margin": 0,
+        	"border-top-left-radius": "0%",
+        	"border-top-right-radius": "0%",
+        	"border-bottom-left-radius": "0%",
+        	"border-bottom-right-radius": "0%",
+        },
+        cost: new Decimal(500)
+      },
+      13: {
+        title: "Way more RP",
+        description: "x5 RP gain",
+        style: {
+        	"height": "120px",
+        	"width": "120px",
+		"margin": 0,
+        	"border-top-left-radius": "0%",
+        	"border-top-right-radius": "0%",
+        	"border-bottom-left-radius": "0%",
+        	"border-bottom-right-radius": "25%",
+        },
+        cost: new Decimal(10000)
+      },
+    },
 	branches: ["p", "a"],
     passiveGeneration() {
       return hasMilestone("p", 0)
