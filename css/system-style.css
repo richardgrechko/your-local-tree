@@ -43,10 +43,12 @@ td {
 }
 
 .upgAlign {
+	margin: 0;
 	vertical-align: 0
 }
 
 .bigUpgAlign {
+	margin: 0;
 	vertical-align: 0
 }
 
