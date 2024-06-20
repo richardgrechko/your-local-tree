@@ -89,7 +89,7 @@ addLayer("r", {
             },
             purchaseLimit: 100,
             bonus() {
-                let bonus = D(0)
+                let bonus = new Decimal(0)
                 if(hasUpgrade('p', 11)) bonus = bonus.add(upgradeEffect('p', 11))
                 return bonus
             },
@@ -114,7 +114,7 @@ addLayer("r", {
             },
             purchaseLimit: 10000,
             bonus() {
-                let bonus = D(0)
+                let bonus = new Decimal(0)
                 if(hasUpgrade('a', 12)) bonus = bonus.add(upgradeEffect('a', 12))
                 return bonus
             },
