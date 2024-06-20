@@ -87,7 +87,6 @@ addLayer("r", {
                 "border-bottom-left-radius": "0%",
                 "border-bottom-right-radius": "0%",
             },
-            unlocked() {return hasUpgrade('b', 11)},
             purchaseLimit: 100,
             bonus() {
                 let bonus = D(0)
@@ -113,7 +112,6 @@ addLayer("r", {
                 "border-bottom-left-radius": "0%",
                 "border-bottom-right-radius": "0%",
             },
-            unlocked() {return hasUpgrade('b', 11)},
             purchaseLimit: 10000,
             bonus() {
                 let bonus = D(0)
