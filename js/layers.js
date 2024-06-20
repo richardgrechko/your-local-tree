@@ -34,6 +34,7 @@ addLayer("r", {
         style: {
         	"height": "120px",
         	"width": "120px",
+		"margin": 0,
         	"border-top-left-radius": "0%",
         	"border-top-right-radius": "0%",
         	"border-bottom-left-radius": "25%",
@@ -47,6 +48,7 @@ addLayer("r", {
         style: {
         	"height": "120px",
         	"width": "120px",
+		"margin": 0,
         	"border-top-left-radius": "0%",
         	"border-top-right-radius": "0%",
         	"border-bottom-left-radius": "0%",
@@ -60,6 +62,7 @@ addLayer("r", {
         style: {
         	"height": "120px",
         	"width": "120px",
+		"margin": 0,
         	"border-top-left-radius": "0%",
         	"border-top-right-radius": "0%",
         	"border-bottom-left-radius": "0%",
@@ -82,6 +85,7 @@ addLayer("r", {
             style: {
                 "height": "120px",
                 "width": "120px",
+		"margin": 0,
                 "border-top-left-radius": "25%",
                 "border-top-right-radius": "0%",
                 "border-bottom-left-radius": "25%",
@@ -107,6 +111,7 @@ addLayer("r", {
             style: {
                 "height": "120px",
                 "width": "120px",
+		"margin": 0,
                 "border-top-left-radius": "0%",
                 "border-top-right-radius": "0%",
                 "border-bottom-left-radius": "0%",
@@ -132,6 +137,7 @@ addLayer("r", {
             style: {
                 "height": "120px",
                 "width": "120px",
+		"margin": 0,
                 "border-top-left-radius": "0%",
                 "border-top-right-radius": "0%",
                 "border-bottom-left-radius": "0%",
@@ -157,6 +163,7 @@ addLayer("r", {
             style: {
                 "height": "120px",
                 "width": "120px",
+		"margin": 0,
                 "border-top-left-radius": "0%",
                 "border-top-right-radius": "0%",
                 "border-bottom-left-radius": "0%",
@@ -182,6 +189,7 @@ addLayer("r", {
             style: {
                 "height": "120px",
                 "width": "120px",
+		"margin": 0,
                 "border-top-left-radius": "0%",
                 "border-top-right-radius": "25%",
                 "border-bottom-left-radius": "0%",
