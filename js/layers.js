@@ -31,175 +31,95 @@ addLayer("r", {
       11: {
         title: "More RP",
         description: "x2 RP gain",
+        style: {
+        	"height": "120px",
+        	"width": "120px",
+        	"border-top-left-radius": "0%",
+        	"border-top-right-radius": "0%",
+        	"border-bottom-left-radius": "25%",
+        	"border-bottom-right-radius": "0%",
+        },
         cost: new Decimal(100)
       },
       12: {
         title: "Even more RP",
         description: "x3 RP gain",
+        style: {
+        	"height": "120px",
+        	"width": "120px",
+        	"border-top-left-radius": "0%",
+        	"border-top-right-radius": "0%",
+        	"border-bottom-left-radius": "0%",
+        	"border-bottom-right-radius": "0%",
+        },
         cost: new Decimal(500)
       },
       13: {
         title: "Way more RP",
         description: "x5 RP gain",
+        style: {
+        	"height": "120px",
+        	"width": "120px",
+        	"border-top-left-radius": "0%",
+        	"border-top-right-radius": "0%",
+        	"border-bottom-left-radius": "0%",
+        	"border-bottom-right-radius": "25%",
+        },
         cost: new Decimal(10000)
       },
     },
 	buyables: {
 		11: {
-            title: "Quickener",
-            currencyDisplayName: "Number",
-            currencyInternalName: "Number",
-            style() {
-                const style = {"width": "120px", "height": "120px"}
-                return style
-              },
-            cost(x) { 
-                let cost1 = new Decimal (10)
-                cost = cost1.mul(Math.pow(1.1, x))
-                if (x.lt(1)) {cost=10}
-                return cost
-                    },
-            display() { // Everything else displayed in the buyable button after the title
-                i = new Decimal(3)
-                p = player.p.points
-                rp = player.r.points
-                if (player.r.points.gt(1e3)) {p=p.mul(rp.mul(0.05).add(1))}
-                if ((player.r.unlocked)&&(player.r.points.lte(1e3))) {p=p.mul(rp.mul(0.1).add(1))}
-                if (player.p.unlocked) {i=i.mul(p.mul(0.1).add(1))}
-                if (hasMilestone("r", 0)) {i=i.mul(2)}
-                i = Math.floor(i)
-                let data = tmp.r.buyables[this.id]
-                return "Cost: " + format(data.cost) + " Number\n\
-                Level: " + player.r.buyables[this.id] + "\n\
-                Adds +"+ format(i) + " points/sec"
+            cost() {return D(10).mul(getBuyableAmount(this.layer, this.id).add(1))},
+            display() {return "("+formatWhole(getBuyableAmount(this.layer, this.id).add(tmp['r'].buyables[11].bonus))+"/"+formatWhole(D(100).add(tmp['r'].buyables[11].bonus))+")<br><h3>Quickener</h3><br>+10% points<br>Cost: "+format(this.cost())+" bytes<br>Currently: "+format(buyableEffect(this.layer, this.id))+"x"},
+            effect() {return D(10).add(D(1).mul(getBuyableAmount(this.layer, this.id).add(tmp['r'].buyables[11].bonus))).mul(buyableEffect('r', 12))},
+            canAfford() {return player.b.points.gte(this.cost())},
+            buy() {
+                if(!hasMilestone('unl', 1)){player[this.layer].points = player[this.layer].points.sub(this.cost())
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))} else {
+                setBuyableAmount(this.layer, this.id, player.b.points.min(100).floor())}
             },
-            canAfford() {
-                return player.r.points.gte(tmp[this.layer].buyables[this.id].cost)
-                },
-                buy() {
-                    if (hasMilestone("r", 1)) {while (player.points.gte(tmp[this.layer].buyables[this.id].cost))
-                    {
-                        this.cost()
-                        player.r.points = player.r.points.sub(cost)   
-                        player.r.buyables[this.id] = player.r.buyables[this.id].add(1)
-                        i = new Decimal(3)
-                        playerNPoints=playerNPoints.add(i)
-                    }}
-                    else {
-                        this.cost()
-                        player.r.points = player.r.points.sub(cost)   
-                        player.r.buyables[this.id] = player.r.buyables[this.id].add(1)
-                        i = new Decimal(3)
-                        playerNPoints=playerNPoints.add(i)
-                    }
-                },
-                    effect (){
-                    return player.points.mul(player.r.points.add(1))
-                }
+            style: {
+                "height": "120px",
+                "width": "120px",
+                "border-top-left-radius": "25%",
+                "border-top-right-radius": "0%",
+                "border-bottom-left-radius": "0%",
+                "border-bottom-right-radius": "0%",
+            },
+            unlocked() {return hasUpgrade('b', 15)},
+            purchaseLimit: 100,
+            bonus() {
+                let bonus = D(0)
+                if(hasUpgrade('kb', 13)) bonus = bonus.add(upgradeEffect('kb', 13))
+                return bonus
+            },
 		},
 		12: {
-            title: "Fastener",
-            currencyDisplayName: "Number",
-            currencyInternalName: "Number",
-            style() {
-                const style = {"width": "120px", "height": "120px"}
-                return style
-              },
-            cost(x) { 
-                let cost1 = new Decimal (100)
-                cost = cost1.mul(Math.pow(1.1, x))
-                if (x.lt(1)) {cost=100}
-                return cost
-                    },
-            display() { // Everything else displayed in the buyable button after the title
-                i = new Decimal(3)
-                p = player.p.points
-                rp = player.r.points
-                if (player.r.points.gt(1e3)) {p=p.mul(rp.mul(0.05).add(1))}
-                if ((player.r.unlocked)&&(player.r.points.lte(1e3))) {p=p.mul(rp.mul(0.1).add(1))}
-                if (player.p.unlocked) {i=i.mul(p.mul(0.1).add(1))}
-                if (hasMilestone("r", 0)) {i=i.mul(2)}
-                i = Math.floor(i)
-                let data = tmp.r.buyables[this.id]
-                return "Cost: " + format(data.cost) + " Number\n\
-                Level: " + player.r.buyables[this.id] + "\n\
-                Adds +"+ format(i) + " points/sec"
+            cost() {return D(10).mul(getBuyableAmount(this.layer, this.id).add(1))},
+            display() {return "("+formatWhole(getBuyableAmount(this.layer, this.id).add(tmp['r'].buyables[11].bonus))+"/"+formatWhole(D(100).add(tmp['r'].buyables[11].bonus))+")<br><h3>Fastener</h3><br>+10% points<br>Cost: "+format(this.cost())+" bytes<br>Currently: "+format(buyableEffect(this.layer, this.id))+"x"},
+            effect() {return D(10).add(D(1).mul(getBuyableAmount(this.layer, this.id).add(tmp['r'].buyables[11].bonus))).mul(buyableEffect('r', 12))},
+            canAfford() {return player.b.points.gte(this.cost())},
+            buy() {
+                if(!hasMilestone('unl', 1)){player[this.layer].points = player[this.layer].points.sub(this.cost())
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))} else {
+                setBuyableAmount(this.layer, this.id, player.b.points.min(100).floor())}
             },
-            canAfford() {
-                return player.r.points.gte(tmp[this.layer].buyables[this.id].cost)
-                },
-                buy() {
-                    if (hasMilestone("r", 1)) {while (player.points.gte(tmp[this.layer].buyables[this.id].cost))
-                    {
-                        this.cost()
-                        player.r.points = player.r.points.sub(cost)   
-                        player.r.buyables[this.id] = player.r.buyables[this.id].add(1)
-                        i = new Decimal(3)
-                        playerNPoints=playerNPoints.add(i)
-                    }}
-                    else {
-                        this.cost()
-                        player.r.points = player.r.points.sub(cost)   
-                        player.r.buyables[this.id] = player.r.buyables[this.id].add(1)
-                        i = new Decimal(3)
-                        playerNPoints=playerNPoints.add(i)
-                    }
-                },
-                    effect (){
-                    return player.points.mul(player.r.points.add(1))
-                }
-		},
-		13: {
-            title: "Speeder",
-            currencyDisplayName: "Number",
-            currencyInternalName: "Number",
-            style() {
-                const style = {"width": "120px", "height": "120px"}
-                return style
-              },
-            cost(x) { 
-                let cost1 = new Decimal (1000)
-                cost = cost1.mul(Math.pow(1.1, x))
-                if (x.lt(1)) {cost=1000}
-                return cost
-                    },
-            display() { // Everything else displayed in the buyable button after the title
-                i = new Decimal(3)
-                p = player.p.points
-                rp = player.r.points
-                if (player.r.points.gt(1e3)) {p=p.mul(rp.mul(0.05).add(1))}
-                if ((player.r.unlocked)&&(player.r.points.lte(1e3))) {p=p.mul(rp.mul(0.1).add(1))}
-                if (player.p.unlocked) {i=i.mul(p.mul(0.1).add(1))}
-                if (hasMilestone("r", 0)) {i=i.mul(2)}
-                i = Math.floor(i)
-                let data = tmp.r.buyables[this.id]
-                return "Cost: " + format(data.cost) + " Number\n\
-                Level: " + player.r.buyables[this.id] + "\n\
-                Adds +"+ format(i) + " points/sec"
+            style: {
+                "height": "120px",
+                "width": "120px",
+                "border-top-left-radius": "0%",
+                "border-top-right-radius": "0%",
+                "border-bottom-left-radius": "0%",
+                "border-bottom-right-radius": "0%",
             },
-            canAfford() {
-                return player.r.points.gte(tmp[this.layer].buyables[this.id].cost)
-                },
-                buy() {
-                    if (hasMilestone("r", 1)) {while (player.points.gte(tmp[this.layer].buyables[this.id].cost))
-                    {
-                        this.cost()
-                        player.r.points = player.r.points.sub(cost)   
-                        player.r.buyables[this.id] = player.r.buyables[this.id].add(1)
-                        i = new Decimal(3)
-                        playerNPoints=playerNPoints.add(i)
-                    }}
-                    else {
-                        this.cost()
-                        player.r.points = player.r.points.sub(cost)   
-                        player.r.buyables[this.id] = player.r.buyables[this.id].add(1)
-                        i = new Decimal(3)
-                        playerNPoints=playerNPoints.add(i)
-                    }
-                },
-                    effect (){
-                    return player.points.mul(player.r.points.add(1))
-                }
+            unlocked() {return hasUpgrade('b', 15)},
+            purchaseLimit: 100,
+            bonus() {
+                let bonus = D(0)
+                if(hasUpgrade('kb', 13)) bonus = bonus.add(upgradeEffect('kb', 13))
+                return bonus
+            },
 		},
 	},
 	branches: ["p", "a"],
