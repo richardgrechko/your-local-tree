@@ -75,7 +75,7 @@ addLayer("r", {
             effect() {return new Decimal(1).add(new Decimal(0.1).mul(getBuyableAmount(this.layer, this.id).add(tmp['r'].buyables[11].bonus))).mul(buyableEffect('r', 12))},
             canAfford() {return player.r.points.gte(this.cost())},
             buy() {
-                if(!hasMilestone('unl', 1)){player[this.layer].points = player[this.layer].points.sub(this.cost())
+                if(!hasMilestone('p', 1)){player[this.layer].points = player[this.layer].points.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))} else {
                 setBuyableAmount(this.layer, this.id, player.b.points.min(100).floor())}
             },
@@ -100,7 +100,7 @@ addLayer("r", {
             effect() {return new Decimal(5).add(new Decimal(0.5).mul(getBuyableAmount(this.layer, this.id).add(tmp['r'].buyables[11].bonus))).mul(buyableEffect('r', 12))},
             canAfford() {return player.r.points.gte(this.cost())},
             buy() {
-                if(!hasMilestone('unl', 1)){player[this.layer].points = player[this.layer].points.sub(this.cost())
+                if(!hasMilestone('p', 1)){player[this.layer].points = player[this.layer].points.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))} else {
                 setBuyableAmount(this.layer, this.id, player.b.points.min(100).floor())}
             },
@@ -164,7 +164,13 @@ addLayer("p", {
           return player.p.points.gte(100)
         }
       },
-      
+      1: {
+        requirementDescription: "1000 prestige points",
+        effectDescription: "Don't spend RP on Buyables",
+        done() {
+          return player.p.points.gte(1000)
+        }
+      },
     },
     layerShown(){return true}
 })
