@@ -28,8 +28,8 @@ addLayer("s", {
 	buyables: {
 		11: {
             cost() {return new Decimal(10).mul(getBuyableAmount(this.layer, this.id).add(1))},
-            display() {return "("+formatWhole(getBuyableAmount(this.layer, this.id).add(tmp['r'].buyables[11].bonus))+"/"+formatWhole(new Decimal(100).add(tmp['r'].buyables[11].bonus))+")<br><h3>Quickener</h3><br>+10% points<br>Cost: "+format(this.cost())+" RP<br>Currently: "+format(buyableEffect(this.layer, this.id))+"x"},
-            effect() {return new Decimal(1).add(new Decimal(0.1).mul(getBuyableAmount(this.layer, this.id).add(tmp['r'].buyables[11].bonus))).mul(buyableEffect('r', 12))},
+            display() {return "("+formatWhole(getBuyableAmount(this.layer, this.id).add(tmp['s'].buyables[11].bonus))+"/"+formatWhole(new Decimal(100).add(tmp['r'].buyables[11].bonus))+")<br><h3>Quickener</h3><br>+10% points<br>Cost: "+format(this.cost())+" RP<br>Currently: "+format(buyableEffect(this.layer, this.id))+"x"},
+            effect() {return new Decimal(1).add(new Decimal(0.1).mul(getBuyableAmount(this.layer, this.id).add(tmp['s'].buyables[11].bonus))).mul(buyableEffect('r', 11))},
             canAfford() {return player.s.points.gte(this.cost())},
             buy() {
                 if(!hasMilestone('p', 1)){player[this.layer].points = player[this.layer].points.sub(this.cost())
@@ -54,8 +54,8 @@ addLayer("s", {
 		},
 		12: {
             cost() {return new Decimal(100).mul(new Decimal(1.12).pow(x || getBuyableAmount(this.layer, this.id)))},
-            display() {return "("+formatWhole(getBuyableAmount(this.layer, this.id).add(tmp['r'].buyables[11].bonus))+"/"+formatWhole(new Decimal(100).add(tmp['r'].buyables[11].bonus))+")<br><h3>Fastener</h3><br>+10% points<br>Cost: "+format(this.cost())+" RP<br>Currently: "+format(buyableEffect(this.layer, this.id))+"x"},
-            effect() {return new Decimal(5).add(new Decimal(0.5).mul(getBuyableAmount(this.layer, this.id).add(tmp['r'].buyables[11].bonus))).mul(buyableEffect('r', 12))},
+            display() {return "("+formatWhole(getBuyableAmount(this.layer, this.id).add(tmp['s'].buyables[11].bonus))+"/"+formatWhole(new Decimal(100).add(tmp['r'].buyables[11].bonus))+")<br><h3>Fastener</h3><br>+10% points<br>Cost: "+format(this.cost())+" RP<br>Currently: "+format(buyableEffect(this.layer, this.id))+"x"},
+            effect() {return new Decimal(5).add(new Decimal(0.5).mul(getBuyableAmount(this.layer, this.id).add(tmp['s'].buyables[12].bonus))).mul(buyableEffect('r', 12))},
             canAfford() {return player.s.points.gte(this.cost())},
             buy() {
                 if(!hasMilestone('p', 1)){player[this.layer].points = player[this.layer].points.sub(this.cost())
@@ -80,8 +80,8 @@ addLayer("s", {
 		},
 		13: {
             cost() {return new Decimal(1000).mul(new Decimal(1.12).pow(x || getBuyableAmount(this.layer, this.id)))},
-            display() {return "("+formatWhole(getBuyableAmount(this.layer, this.id).add(tmp['r'].buyables[11].bonus))+"/"+formatWhole(new Decimal(100).add(tmp['r'].buyables[11].bonus))+")<br><h3>Speeder</h3><br>+10% points<br>Cost: "+format(this.cost())+" RP<br>Currently: "+format(buyableEffect(this.layer, this.id))+"x"},
-            effect() {return new Decimal(5).add(new Decimal(0.5).mul(getBuyableAmount(this.layer, this.id).add(tmp['r'].buyables[11].bonus))).mul(buyableEffect('r', 12))},
+            display() {return "("+formatWhole(getBuyableAmount(this.layer, this.id).add(tmp['s'].buyables[11].bonus))+"/"+formatWhole(new Decimal(100).add(tmp['r'].buyables[11].bonus))+")<br><h3>Speeder</h3><br>+10% points<br>Cost: "+format(this.cost())+" RP<br>Currently: "+format(buyableEffect(this.layer, this.id))+"x"},
+            effect() {return new Decimal(5).add(new Decimal(0.5).mul(getBuyableAmount(this.layer, this.id).add(tmp['s'].buyables[13].bonus))).mul(buyableEffect('r', 13))},
             canAfford() {return player.s.points.gte(this.cost())},
             buy() {
                 if(!hasMilestone('p', 1)){player[this.layer].points = player[this.layer].points.sub(this.cost())
@@ -106,8 +106,8 @@ addLayer("s", {
 		},
 		14: {
             cost() {return new Decimal(1000000).mul(new Decimal(1.12).pow(x || getBuyableAmount(this.layer, this.id)))},
-            display() {return "("+formatWhole(getBuyableAmount(this.layer, this.id).add(tmp['r'].buyables[11].bonus))+"/"+formatWhole(new Decimal(100).add(tmp['r'].buyables[11].bonus))+")<br><h3>Overpower</h3><br>+10% points<br>Cost: "+format(this.cost())+" RP<br>Currently: "+format(buyableEffect(this.layer, this.id))+"x"},
-            effect() {return new Decimal(5).add(new Decimal(0.5).mul(getBuyableAmount(this.layer, this.id).add(tmp['r'].buyables[11].bonus))).mul(buyableEffect('r', 12))},
+            display() {return "("+formatWhole(getBuyableAmount(this.layer, this.id).add(tmp['s'].buyables[11].bonus))+"/"+formatWhole(new Decimal(100).add(tmp['r'].buyables[11].bonus))+")<br><h3>Overpower</h3><br>+10% points<br>Cost: "+format(this.cost())+" RP<br>Currently: "+format(buyableEffect(this.layer, this.id))+"x"},
+            effect() {return new Decimal(5).add(new Decimal(0.5).mul(getBuyableAmount(this.layer, this.id).add(tmp['s'].buyables[14].bonus))).mul(buyableEffect('r', 14))},
             canAfford() {return player.s.points.gte(this.cost())},
             buy() {
                 if(!hasMilestone('p', 1)){player[this.layer].points = player[this.layer].points.sub(this.cost())
@@ -132,8 +132,8 @@ addLayer("s", {
 		},
 		15: {
             cost() {return new Decimal(1e9).mul(new Decimal(1.12).pow(x || getBuyableAmount(this.layer, this.id)))},
-            display() {return "("+formatWhole(getBuyableAmount(this.layer, this.id).add(tmp['r'].buyables[11].bonus))+"/"+formatWhole(new Decimal(100).add(tmp['r'].buyables[11].bonus))+")<br><h3>Warper</h3><br>+10% points<br>Cost: "+format(this.cost())+" RP<br>Currently: "+format(buyableEffect(this.layer, this.id))+"x"},
-            effect() {return new Decimal(5).add(new Decimal(0.5).mul(getBuyableAmount(this.layer, this.id).add(tmp['r'].buyables[11].bonus))).mul(buyableEffect('r', 12))},
+            display() {return "("+formatWhole(getBuyableAmount(this.layer, this.id).add(tmp['s'].buyables[11].bonus))+"/"+formatWhole(new Decimal(100).add(tmp['r'].buyables[11].bonus))+")<br><h3>Warper</h3><br>+10% points<br>Cost: "+format(this.cost())+" RP<br>Currently: "+format(buyableEffect(this.layer, this.id))+"x"},
+            effect() {return new Decimal(5).add(new Decimal(0.5).mul(getBuyableAmount(this.layer, this.id).add(tmp['s'].buyables[15].bonus))).mul(buyableEffect('r', 15))},
             canAfford() {return player.s.points.gte(this.cost())},
             buy() {
                 if(!hasMilestone('p', 1)){player[this.layer].points = player[this.layer].points.sub(this.cost())
