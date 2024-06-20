@@ -118,6 +118,7 @@ addLayer("r", {
                 if(hasUpgrade('a', 12)) bonus = bonus.add(upgradeEffect('a', 12))
                 return bonus
             },
+		},
 		13: {
             cost() {return new Decimal(1000).mul(new Decimal(1.12).pow(x || getBuyableAmount(this.layer, this.id)))},
             display() {return "("+formatWhole(getBuyableAmount(this.layer, this.id).add(tmp['r'].buyables[11].bonus))+"/"+formatWhole(new Decimal(100).add(tmp['r'].buyables[11].bonus))+")<br><h3>Fastener</h3><br>+10% points<br>Cost: "+format(this.cost())+" RP<br>Currently: "+format(buyableEffect(this.layer, this.id))+"x"},
@@ -142,6 +143,7 @@ addLayer("r", {
                 if(hasUpgrade('a', 12)) bonus = bonus.add(upgradeEffect('a', 12))
                 return bonus
             },
+		},
 		14: {
             cost() {return new Decimal(1000000).mul(new Decimal(1.12).pow(x || getBuyableAmount(this.layer, this.id)))},
             display() {return "("+formatWhole(getBuyableAmount(this.layer, this.id).add(tmp['r'].buyables[11].bonus))+"/"+formatWhole(new Decimal(100).add(tmp['r'].buyables[11].bonus))+")<br><h3>Fastener</h3><br>+10% points<br>Cost: "+format(this.cost())+" RP<br>Currently: "+format(buyableEffect(this.layer, this.id))+"x"},
@@ -166,6 +168,7 @@ addLayer("r", {
                 if(hasUpgrade('a', 12)) bonus = bonus.add(upgradeEffect('a', 12))
                 return bonus
             },
+		},
 		15: {
             cost() {return new Decimal(1e9).mul(new Decimal(1.12).pow(x || getBuyableAmount(this.layer, this.id)))},
             display() {return "("+formatWhole(getBuyableAmount(this.layer, this.id).add(tmp['r'].buyables[11].bonus))+"/"+formatWhole(new Decimal(100).add(tmp['r'].buyables[11].bonus))+")<br><h3>Fastener</h3><br>+10% points<br>Cost: "+format(this.cost())+" RP<br>Currently: "+format(buyableEffect(this.layer, this.id))+"x"},
