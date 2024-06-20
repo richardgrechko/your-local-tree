@@ -84,7 +84,7 @@ addLayer("r", {
                 "width": "120px",
                 "border-top-left-radius": "25%",
                 "border-top-right-radius": "0%",
-                "border-bottom-left-radius": "0%",
+                "border-bottom-left-radius": "25%",
                 "border-bottom-right-radius": "0%",
             },
             purchaseLimit: 100,
@@ -111,6 +111,78 @@ addLayer("r", {
                 "border-top-right-radius": "0%",
                 "border-bottom-left-radius": "0%",
                 "border-bottom-right-radius": "0%",
+            },
+            purchaseLimit: 100,
+            bonus() {
+                let bonus = new Decimal(0)
+                if(hasUpgrade('a', 12)) bonus = bonus.add(upgradeEffect('a', 12))
+                return bonus
+            },
+		13: {
+            cost() {return new Decimal(1000).mul(new Decimal(1.12).pow(x || getBuyableAmount(this.layer, this.id)))},
+            display() {return "("+formatWhole(getBuyableAmount(this.layer, this.id).add(tmp['r'].buyables[11].bonus))+"/"+formatWhole(new Decimal(100).add(tmp['r'].buyables[11].bonus))+")<br><h3>Fastener</h3><br>+10% points<br>Cost: "+format(this.cost())+" RP<br>Currently: "+format(buyableEffect(this.layer, this.id))+"x"},
+            effect() {return new Decimal(5).add(new Decimal(0.5).mul(getBuyableAmount(this.layer, this.id).add(tmp['r'].buyables[11].bonus))).mul(buyableEffect('r', 12))},
+            canAfford() {return player.r.points.gte(this.cost())},
+            buy() {
+                if(!hasMilestone('p', 1)){player[this.layer].points = player[this.layer].points.sub(this.cost())
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))} else {
+                setBuyableAmount(this.layer, this.id, player.r.points.min(100).floor())}
+            },
+            style: {
+                "height": "120px",
+                "width": "120px",
+                "border-top-left-radius": "0%",
+                "border-top-right-radius": "0%",
+                "border-bottom-left-radius": "0%",
+                "border-bottom-right-radius": "0%",
+            },
+            purchaseLimit: 100,
+            bonus() {
+                let bonus = new Decimal(0)
+                if(hasUpgrade('a', 12)) bonus = bonus.add(upgradeEffect('a', 12))
+                return bonus
+            },
+		14: {
+            cost() {return new Decimal(1000000).mul(new Decimal(1.12).pow(x || getBuyableAmount(this.layer, this.id)))},
+            display() {return "("+formatWhole(getBuyableAmount(this.layer, this.id).add(tmp['r'].buyables[11].bonus))+"/"+formatWhole(new Decimal(100).add(tmp['r'].buyables[11].bonus))+")<br><h3>Fastener</h3><br>+10% points<br>Cost: "+format(this.cost())+" RP<br>Currently: "+format(buyableEffect(this.layer, this.id))+"x"},
+            effect() {return new Decimal(5).add(new Decimal(0.5).mul(getBuyableAmount(this.layer, this.id).add(tmp['r'].buyables[11].bonus))).mul(buyableEffect('r', 12))},
+            canAfford() {return player.r.points.gte(this.cost())},
+            buy() {
+                if(!hasMilestone('p', 1)){player[this.layer].points = player[this.layer].points.sub(this.cost())
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))} else {
+                setBuyableAmount(this.layer, this.id, player.r.points.min(100).floor())}
+            },
+            style: {
+                "height": "120px",
+                "width": "120px",
+                "border-top-left-radius": "0%",
+                "border-top-right-radius": "0%",
+                "border-bottom-left-radius": "0%",
+                "border-bottom-right-radius": "0%",
+            },
+            purchaseLimit: 100,
+            bonus() {
+                let bonus = new Decimal(0)
+                if(hasUpgrade('a', 12)) bonus = bonus.add(upgradeEffect('a', 12))
+                return bonus
+            },
+		15: {
+            cost() {return new Decimal(1e9).mul(new Decimal(1.12).pow(x || getBuyableAmount(this.layer, this.id)))},
+            display() {return "("+formatWhole(getBuyableAmount(this.layer, this.id).add(tmp['r'].buyables[11].bonus))+"/"+formatWhole(new Decimal(100).add(tmp['r'].buyables[11].bonus))+")<br><h3>Fastener</h3><br>+10% points<br>Cost: "+format(this.cost())+" RP<br>Currently: "+format(buyableEffect(this.layer, this.id))+"x"},
+            effect() {return new Decimal(5).add(new Decimal(0.5).mul(getBuyableAmount(this.layer, this.id).add(tmp['r'].buyables[11].bonus))).mul(buyableEffect('r', 12))},
+            canAfford() {return player.r.points.gte(this.cost())},
+            buy() {
+                if(!hasMilestone('p', 1)){player[this.layer].points = player[this.layer].points.sub(this.cost())
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))} else {
+                setBuyableAmount(this.layer, this.id, player.r.points.min(100).floor())}
+            },
+            style: {
+                "height": "120px",
+                "width": "120px",
+                "border-top-left-radius": "0%",
+                "border-top-right-radius": "25%",
+                "border-bottom-left-radius": "0%",
+                "border-bottom-right-radius": "25%",
             },
             purchaseLimit: 100,
             bonus() {
