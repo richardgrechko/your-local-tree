@@ -70,9 +70,9 @@ addLayer("r", {
     },
 	buyables: {
 		11: {
-            cost() {return D(10).mul(getBuyableAmount(this.layer, this.id).add(1))},
+            cost() {return new Decimal(10).mul(getBuyableAmount(this.layer, this.id).add(1))},
             display() {return "("+formatWhole(getBuyableAmount(this.layer, this.id).add(tmp['r'].buyables[11].bonus))+"/"+formatWhole(D(100).add(tmp['r'].buyables[11].bonus))+")<br><h3>Quickener</h3><br>+10% points<br>Cost: "+format(this.cost())+" bytes<br>Currently: "+format(buyableEffect(this.layer, this.id))+"x"},
-            effect() {return D(1).add(D(0.1).mul(getBuyableAmount(this.layer, this.id).add(tmp['r'].buyables[11].bonus))).mul(buyableEffect('r', 12))},
+            effect() {return new Decimal(1).add(new Decimal(0.1).mul(getBuyableAmount(this.layer, this.id).add(tmp['r'].buyables[11].bonus))).mul(buyableEffect('r', 12))},
             canAfford() {return player.b.points.gte(this.cost())},
             buy() {
                 if(!hasMilestone('unl', 1)){player[this.layer].points = player[this.layer].points.sub(this.cost())
@@ -91,14 +91,14 @@ addLayer("r", {
             purchaseLimit: 100,
             bonus() {
                 let bonus = D(0)
-                if(hasUpgrade('kb', 13)) bonus = bonus.add(upgradeEffect('kb', 13))
+                if(hasUpgrade('p', 11)) bonus = bonus.add(upgradeEffect('p', 11))
                 return bonus
             },
 		},
 		12: {
-            cost() {return D(10).mul(getBuyableAmount(this.layer, this.id).add(1))},
+            cost() {return new Decimal(100).mul(new D(1.12).pow(x || getBuyableAmount(this.layer, this.id))))},
             display() {return "("+formatWhole(getBuyableAmount(this.layer, this.id).add(tmp['r'].buyables[11].bonus))+"/"+formatWhole(D(100).add(tmp['r'].buyables[11].bonus))+")<br><h3>Fastener</h3><br>+10% points<br>Cost: "+format(this.cost())+" bytes<br>Currently: "+format(buyableEffect(this.layer, this.id))+"x"},
-            effect() {return D(5).add(D(0.5).mul(getBuyableAmount(this.layer, this.id).add(tmp['r'].buyables[11].bonus))).mul(buyableEffect('r', 12))},
+            effect() {return new Decimal(5).add(new Decimal(0.5).mul(getBuyableAmount(this.layer, this.id).add(tmp['r'].buyables[11].bonus))).mul(buyableEffect('r', 12))},
             canAfford() {return player.b.points.gte(this.cost())},
             buy() {
                 if(!hasMilestone('unl', 1)){player[this.layer].points = player[this.layer].points.sub(this.cost())
@@ -114,10 +114,10 @@ addLayer("r", {
                 "border-bottom-right-radius": "0%",
             },
             unlocked() {return hasUpgrade('b', 15)},
-            purchaseLimit: 100,
+            purchaseLimit: 10000,
             bonus() {
                 let bonus = D(0)
-                if(hasUpgrade('kb', 13)) bonus = bonus.add(upgradeEffect('kb', 13))
+                if(hasUpgrade('a', 12)) bonus = bonus.add(upgradeEffect('a', 12))
                 return bonus
             },
 		},
@@ -197,21 +197,33 @@ addLayer("a", {
     hotkeys: [
         {key: "p", description: "P: Reset for prestige points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
-    milestones: {
-      0: {
-        requirementDescription: "100 prestige points",
-        effectDescription: "Automate RP Upgrade and Get RP per second",
-        done() {
-          return player.p.points.gte(100)
-        }
-      },
-      1: {
-        requirementDescription: "1000 prestige points",
-        effectDescription: "Auto Buy Quickener",
-        done() {
-          return player.p.points.gte(1000)
-        }
-      },
+    upgrades: {
+	    11: {
+        title: "Quickener Bonus",
+        description: "just a bonus right?",
+        style: {
+        	"height": "120px",
+        	"width": "120px",
+        	"border-top-left-radius": "25%",
+        	"border-top-right-radius": "0%",
+        	"border-bottom-left-radius": "25%",
+        	"border-bottom-right-radius": "0%",
+        },
+        cost: new Decimal(100)
+	    },
+	    12: {
+        title: "Fastener Bonus",
+        description: "just a bonus right?",
+        style: {
+        	"height": "120px",
+        	"width": "120px",
+        	"border-top-left-radius": "0%",
+        	"border-top-right-radius": "25%",
+        	"border-bottom-left-radius": "0%",
+        	"border-bottom-right-radius": "25%",
+        },
+        cost: new Decimal(100)
+	    },
     },
     layerShown(){return true}
 })
