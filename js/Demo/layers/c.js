@@ -1,7 +1,7 @@
-var testTree = [["f", "c"],
+var testTree = [["F", "C"],
 ["g", "spook", "h"]]
 
-addLayer("c", {
+addLayer("C", {
         layer: "c", // This is assigned automatically, both to the layer and all upgrades, etc. Shown here so you know about it
         name: "Candies", // This is optional, only used in a few places, If absent it just uses the layer id.
         symbol: "C", // This appears on the layer's node. Default is the id with the first letter capitalized
