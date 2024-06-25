@@ -2,7 +2,7 @@ let modInfo = {
 	name: "The Timing Tree",
 	id: "TimingTree",
 	author: "richardgrechko",
-	pointsName: "seconds",
+	pointsName: "a",
 	modFiles: ["layers.js", "tree.js"],
 
 	discordName: "",
