@@ -42,7 +42,7 @@ addLayer("a", {
         unlocked: true,
 		points: new Decimal(0),
     }},
-    color: "#80ff00",
+    color: "#382e2e",
     requires: new Decimal(10), // Can be a function that takes requirement increases into account
     resource: "a", // Name of prestige currency
     type: "none", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
@@ -121,7 +121,7 @@ addLayer("b", {
         unlocked: true,
 		points: new Decimal(0),
     }},
-    color: "#80ff00",
+    color: "#584541",
     requires: new Decimal(1000), // Can be a function that takes requirement increases into account
     resource: "b", // Name of prestige currency
     baseResource: "a", // Name of resource prestige is based on
@@ -154,5 +154,5 @@ addLayer("b", {
         cost: new Decimal(100)
 	    },
     },
-    layerShown(){return false}
+    layerShown(){return true}
 })
