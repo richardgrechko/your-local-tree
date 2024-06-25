@@ -108,7 +108,7 @@ addLayer("a", {
 		return hasMilestone("b", 1)
 	},
     softcap: new Decimal("ee10"),
-    layerShown(){return true}
+    layerShown(){return true},
 	automate() {
         	player.a.points = player.points.mul(player.b.points.add(1))
 	},
