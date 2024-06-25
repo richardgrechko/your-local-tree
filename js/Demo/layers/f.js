@@ -1,5 +1,5 @@
 // This layer is mostly minimal but it uses a custom prestige type and a clickable
-addLayer("f", {
+addLayer("F", {
     infoboxes:{
         coolInfo: {
             title: "Lore",
