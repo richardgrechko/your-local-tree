@@ -1,3 +1,39 @@
+const statLetters = [
+  "a",
+  "b",
+  "c",
+  "d",
+  "e",
+  "f",
+  "g",
+  "h",
+  "i",
+  "j",
+  "k",
+  "l",
+  "m",
+  "n",
+  "o",
+  "p",
+  "q",
+  "r",
+  "s",
+  "t",
+  "u",
+  "v",
+  "w",
+  "x",
+  "y",
+  "z",
+  
+  ]
+
+function getStatName(n) {
+  if (n.add == undefined) n = new Decimal(n)
+  if (n.gte(1e100)) return `${formatWhole(n)}th stat`
+  if (n.gte(26)) return getStatName(n.div(26).floor().sub(1)) + getStatName(n.mod(26))
+  return statLetters[n.floor()]
+}
 addLayer("a", {
     name: "a", // This is optional, only used in a few places, If absent it just uses the layer id.
     symbol: "a", // This appears on the layer's node. Default is the id with the first letter capitalized
@@ -12,6 +48,8 @@ addLayer("a", {
     type: "none", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
+	    mult = mult.mul(5)
+
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
