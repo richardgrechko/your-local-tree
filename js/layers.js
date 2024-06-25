@@ -65,16 +65,15 @@ addLayer("a", {
         cost: new Decimal(10000)
       },
     },
-	},
-	branches: ["r"],
-	automate() {
-        	player.a.points = player.points.mul(player.b.points.add(1))
-	},
+	branches: ["b"],
 	autoBuy() {
-		return hasMilestone("p", 1)
+		return hasMilestone("b", 1)
 	},
     softcap: new Decimal("ee10"),
     layerShown(){return true}
+	automate() {
+        	player.a.points = player.points.mul(player.b.points.add(1))
+	},
 })
 addLayer("b", {
     name: "b", // This is optional, only used in a few places, If absent it just uses the layer id.
@@ -104,8 +103,8 @@ addLayer("b", {
     ],
     upgrades: {
 	    11: {
-        title: "Quickener Bonus",
-        description: "just a bonus right?",
+        title: "a",
+        description: "a",
         style: {
         	"height": "120px",
         	"width": "120px",
@@ -113,19 +112,6 @@ addLayer("b", {
         	"border-top-right-radius": "0%",
         	"border-bottom-left-radius": "25%",
         	"border-bottom-right-radius": "0%",
-        },
-        cost: new Decimal(100)
-	    },
-	    12: {
-        title: "Fastener Bonus",
-        description: "just a bonus right?",
-        style: {
-        	"height": "120px",
-        	"width": "120px",
-        	"border-top-left-radius": "0%",
-        	"border-top-right-radius": "25%",
-        	"border-bottom-left-radius": "0%",
-        	"border-bottom-right-radius": "25%",
         },
         cost: new Decimal(100)
 	    },
