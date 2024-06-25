@@ -31,7 +31,7 @@ const statLetters = [
 function getStatName(n) {
   if (n.add == undefined) n = new Decimal(n)
   if (n.gte(1e100)) return `${formatWhole(n)}th stat`
-  if (n.gte(26)) return getStatName(n.div(26).floor().sub(1)) + getStatName(n.mod(26))
+  if (n.gte(26)) return getStatName(n.mod(26)) + "<sup>" + getStatName(n.div(26).floor().sub(1)) + "</sup>"
   return statLetters[n.floor()]
 }
 addLayer("a", {
