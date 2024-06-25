@@ -43,7 +43,7 @@ function getPointGen() {
 		return new Decimal(0)
 
 	let gain = new Decimal(1)
-	gain = gain.mul(player.b.points.add(1))
+	gain = gain.mul(player.b.points)
 	gain = gain.mul(upgradeEffect('a', 11))
 	gain = gain.mul(upgradeEffect('a', 12))
 	gain = gain.mul(upgradeEffect('a', 13))
