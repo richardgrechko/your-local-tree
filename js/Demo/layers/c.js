@@ -1,5 +1,4 @@
-var testTree = [["F", "C"],
-["g", "spook", "h"]]
+var testTree = [["F", "C"]]
 
 addLayer("C", {
         layer: "c", // This is assigned automatically, both to the layer and all upgrades, etc. Shown here so you know about it
