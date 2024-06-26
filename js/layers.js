@@ -154,7 +154,7 @@ addLayer("b", {
         cost: new Decimal(100)
 	    },
     },
-	branch: ["c"],
+	branches: ["c"],
     layerShown(){return true}
 })
 
