@@ -154,6 +154,9 @@ addLayer("b", {
         cost: new Decimal(100)
 	    },
     },
+    passiveGeneration() {
+      return hasUpgrade("b", 0)
+    },
 	branches: ["c"],
     layerShown(){return true}
 })
@@ -180,7 +183,7 @@ addLayer("c", {
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
     },
-    row: 1, // Row the layer is in on the tree (0 is the first row)
+    row: 2, // Row the layer is in on the tree (0 is the first row)
     hotkeys: [
         {key: "p", description: "P: Reset for prestige points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
@@ -198,6 +201,9 @@ addLayer("c", {
         },
         cost: new Decimal(100)
 	    },
+    },
+    passiveGeneration() {
+      return hasUpgrade("c", 0)
     },
     layerShown(){return true}
 })
