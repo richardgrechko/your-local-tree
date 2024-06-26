@@ -42,7 +42,7 @@ function getPointGen() {
 	if(!canGenPoints())
 		return new Decimal(0)
 
-	let gain = new Decimal(1)
+	let gain = new Decimal(1).mul(player.b.points.add(1)).mul(player.c.points.add(1)).mul(player.d.points.add(1)).mul(player.e.points.add(1)).mul(player.f.points.add(1)).mul(player.g.points.add(1)).mul(player.h.points.add(1))
 	if (hasUpgrade("a", 11)) gain = gain.mul(2)
 	if (hasUpgrade("a", 12)) gain = gain.mul(3)
 	if (hasUpgrade("a", 13)) gain = gain.mul(5)
