@@ -48,7 +48,6 @@ addLayer("a", {
     type: "none", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
-	    mult = mult.mul(5)
 
         return mult
     },
@@ -110,7 +109,7 @@ addLayer("a", {
     softcap: new Decimal("ee10"),
     layerShown(){return true},
 	automate() {
-        	player.a.points = player.points.mul(player.b.points.add(1))
+        	player.a.points = player.points.mul(player.b.points.add(1)).mul(player.c.points.add(1)).mul(player.d.points.add(1)).mul(player.e.points.add(1)).mul(player.f.points.add(1)).mul(player.g.points.add(1)).mul(player.h.points.add(1))
 	},
 })
 addLayer("b", {
